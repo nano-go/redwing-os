@@ -1,0 +1,2 @@
+[workspace]
+members = ["redwing_efs", "redwing_fuse", "redwing_ram", "redwing_vfs"]

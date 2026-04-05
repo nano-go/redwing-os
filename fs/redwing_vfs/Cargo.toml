@@ -1,0 +1,12 @@
+[package]
+name = "redwing_vfs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["to_syserr"]
+to_syserr = ["dep:syserr"]
+
+[dependencies]
+rw_ulib_types = { path = "../../ulib/rw_ulib_types" }
+syserr = { path = "../../common/syserr", optional = true }

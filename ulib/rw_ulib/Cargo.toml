@@ -1,0 +1,27 @@
+[package]
+name = "rw_ulib"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["user"]
+user = ["syscall", "fcntl", "alloc"]
+syscall = []
+fcntl = []
+alloc = []
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+bitflags = "2.9.0"
+num_enum = { version = "0.7.3", default-features = false }
+heapless = "0.8.0"
+linked_list_allocator = "0.10.5"
+spin = { version = "0.10.0", default-features = false, features = [
+  "mutex",
+  "spin_mutex",
+] }
+path = { path = "../../common/path" }
+syserr = { path = "../../common/syserr" }
+rw_ulib_types = { path = "../rw_ulib_types" }

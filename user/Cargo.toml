@@ -1,0 +1,59 @@
+[package]
+name = "user"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rw_ulib = { path = "../ulib/rw_ulib" }
+rw_ulib_types = { path = "../ulib/rw_ulib_types" }
+path = { path = "../common/path" }
+syserr = { path = "../common/syserr" }
+lazy_static = { version = "1.5.0", features = ["spin_no_std"] }
+
+[[bin]]
+name = "echo"
+path = "src/echo.rs"
+
+[[bin]]
+name = "ls"
+path = "src/ls.rs"
+
+[[bin]]
+name = "mkdir"
+path = "src/mkdir.rs"
+
+[[bin]]
+name = "rmdir"
+path = "src/rmdir.rs"
+
+[[bin]]
+name = "rm"
+path = "src/rm.rs"
+
+[[bin]]
+name = "sh"
+path = "src/sh/main.rs"
+
+[[bin]]
+name = "cat"
+path = "src/cat.rs"
+
+[[bin]]
+name = "ps"
+path = "src/ps.rs"
+
+[[bin]]
+name = "kill"
+path = "src/kill.rs"
+
+[[bin]]
+name = "env"
+path = "src/env.rs"
+
+[[bin]]
+name = "loop"
+path = "src/loop.rs"
+
+[[bin]]
+name = "test_signal"
+path = "src/test_signal.rs"

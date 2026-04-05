@@ -1,0 +1,33 @@
+[package]
+name = "redwing_os"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = 3
+
+[features]
+
+[dependencies]
+riscv = "0.13.0"
+lazy_static = { version = "1.5.0", features = ["spin_no_std"] }
+hashbrown = "0.11.2"
+linked_list_allocator = "0.10.5"
+log = "0.4"
+bitflags = "2.9.0"
+num_enum = { version = "0.7.3", default-features = false }
+const-default = { version = "1.0", features = ["derive"] }
+heapless = "0.8.0"
+intrusive-collections = "0.9"
+
+rw_ulib = { path = "../ulib/rw_ulib", default-features = false, features = [
+  "syscall",
+  "alloc",
+] }
+rw_ulib_types = { path = "../ulib/rw_ulib_types" }
+syscall_macro = { path = "./syscall_macro" }
+path = { path = "../common/path" }
+syserr = { path = "../common/syserr" }
+redwing_vfs = { path = "../fs/redwing_vfs", features = ["to_syserr"] }
+redwing_efs = { path = "../fs/redwing_efs" }
+redwing_ram = { path = "../fs/redwing_ram" }

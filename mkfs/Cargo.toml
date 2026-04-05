@@ -1,0 +1,16 @@
+[package]
+name = "mkfs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+thiserror = "2.0.12"
+dialoguer = "0.11.0"
+lazy_static = "1.5.0"
+
+redwing_vfs = { path = "../fs/redwing_vfs" }
+redwing_efs = { path = "../fs/redwing_efs", default-features = false, features = [
+  "stdio-dev",
+] }
+rw_ulib_types = { path = "../ulib/rw_ulib_types" }

@@ -1,0 +1,14 @@
+[package]
+name = "redwing_ram"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+hashbrown = "0.11.2"
+redwing_vfs = { path = "../redwing_vfs" }
+rw_ulib_types = { path = "../../ulib/rw_ulib_types" }
+spin = { version = "0.10.0", default-features = false, features = [
+  "mutex",
+  "spin_mutex",
+  "rwlock",
+] }

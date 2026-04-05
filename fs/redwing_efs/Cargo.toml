@@ -1,0 +1,30 @@
+[package]
+name = "redwing_efs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["ram-dev"]
+ram-dev = []
+stdio-dev = []
+
+[dependencies]
+redwing_vfs = { path = "../redwing_vfs", default-features = false }
+rw_ulib_types = { path = "../../ulib/rw_ulib_types" }
+human_size = { path = "../../common/human_size" }
+hashbrown = "0.15"
+spin = { version = "0.10.0", default-features = false, features = [
+  "mutex",
+  "spin_mutex",
+  "rwlock",
+] }
+endian-num = { version = "0.2.0", features = ["linux-types"] }
+num_enum = { version = "0.7", default-features = false }
+
+[dependencies.lru]
+version = "0.13"
+default-features = false
+features = ["hashbrown"]
+
+[dev-dependencies]
+rand = "0.8"
