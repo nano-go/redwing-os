@@ -27,7 +27,7 @@ fn set_cpuid(id: usize) {
     }
 }
 
-/// Returns the id of current CPU. This is only avaliable after `_start`.
+/// Returns the id of current CPU. This is only available after `_start`.
 #[inline]
 #[must_use]
 pub fn cpuid() -> usize {
@@ -43,7 +43,7 @@ pub fn halt() {
     unsafe { asm!("wfi") };
 }
 
-/// Return whether the intterupt is enable.
+/// Return whether the intterupt is enabled.
 #[inline]
 pub fn intr_get() -> bool {
     sstatus::read().sie()

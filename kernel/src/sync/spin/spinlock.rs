@@ -141,7 +141,7 @@ impl<T> Spinlock<T> {
     ///
     /// # Safety
     ///
-    /// Caller must ensure the the spinlock is locked.
+    /// Caller must ensure the spinlock is locked.
     unsafe fn force_unlock_unchecked(&self) {
         self.cpuid.store(-1, Ordering::Release);
         self.is_locked.store(false, Ordering::Release);

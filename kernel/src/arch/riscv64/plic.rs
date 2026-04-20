@@ -44,7 +44,7 @@ fn enable_intr(hart_id: usize, irqs: &[u32]) {
     for irq in irqs {
         let addr = base + *irq as usize / 32;
         let bit_pos = *irq as usize % 32;
-        // To enable a interrupt for a hart, set the bit correspoding to the
+        // To enable a interrupt for a hart, set the bit corresponding to the
         // interrupt.
         w_reg(addr, r_reg(addr) | (1 << bit_pos));
     }
@@ -53,7 +53,7 @@ fn enable_intr(hart_id: usize, irqs: &[u32]) {
 /// PLIC provides context based threshold register for the settings of a
 /// interrupt priority threshold of each context.
 ///
-/// Usally set 0 to accept all interrupts.
+/// Usually set 0 to accept all interrupts.
 ///
 /// The PLIC spec defines separate priority-threshold contexts per mode(M-mode,
 /// S-mode). This is for S-mode.
@@ -70,7 +70,7 @@ pub fn claim() -> u32 {
     r_reg(CLAIM_BASE_ADDR + cpuid() * SIZE_PER_CTX + 4)
 }
 
-/// Tell PLIC this intterupt request has handled.
+/// Tell PLIC this interrupt request has handled.
 pub fn complete(irq: u32) {
     const CLAIM_BASE_ADDR: usize = 0x201000;
     const SIZE_PER_CTX: usize = 0x2000;

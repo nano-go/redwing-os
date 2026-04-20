@@ -19,7 +19,7 @@ use riscv::register::*;
 use rw_ulib_types::signal::SignalFlags;
 
 extern "C" {
-    /// This is defined in `trap.S` file.
+    /// These are defined in `trap.S` file.
     pub fn _kernel_trap_vec();
     pub fn _user_trap_vec();
     pub fn _user_trap_ret(a: usize) -> !;
@@ -41,7 +41,7 @@ unsafe fn kernel_trap_handler() {
     let sepc = sepc::read();
 
     if intr_get() {
-        error!("kernel_trap_handler: interrupts enabled");
+        error!("kernel_trap_handler: interrupts should be disabled");
     }
 
     if sstatus::read().spp() != sstatus::SPP::Supervisor {
@@ -126,7 +126,7 @@ fn handle_scause() {
 
         Scause::Intr(intr) => {
             error!(
-                "Unexpected intterrupt occured: \n\tsepc: {:#x} from user: {}\n\t{}",
+                "Unexpected intterrupt occurred: \n\tsepc: {:#x} from user: {}\n\t{}",
                 sepc::read(),
                 sstatus::read().spp() == sstatus::SPP::User,
                 intr
@@ -198,7 +198,7 @@ fn handle_exception(exp: Exception, sepc: usize) {
     );
 }
 
-// Hanlde scause register
+// Handle scause register
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(usize)]
@@ -238,7 +238,7 @@ impl fmt::Display for Scause {
 const EXCEPTION_CODE_DESC: [Option<&'static str>; 16] = [
     Some("Instruction address misaligned"),
     Some("Instruction access fault"),
-    Some("Instruction illgeal instruction"),
+    Some("Instruction illegal instruction"),
     Some("Break point"),
     Some("Load address misaligned"),
     Some("Load access fault"),

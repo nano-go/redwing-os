@@ -78,7 +78,7 @@ impl Display for TaskState {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         match self {
             Self::Zombie => write!(f, "Z (zombie)"),
-            Self::Running => write!(f, "R (runnung)"),
+            Self::Running => write!(f, "R (running)"),
             Self::Runable => write!(f, "r (runnable)"),
             Self::Initialized => write!(f, "i (initialized)"),
             Self::Interruptible => write!(f, "I (interruptible)"),
@@ -241,7 +241,7 @@ impl Task {
             let self_ref = task.self_ref.upgrade().unwrap();
 
             // Adds the new task into the global task table.
-            // This may causes memory leak. This task should be removed from the table
+            // This may cause memory leak. This task should be removed from the table
             // when a parent task collects it by `wait`.
             if task_table.insert(*self.tid, self_ref).is_err() {
                 return Err(sys_err!(

@@ -7,10 +7,10 @@ use riscv::register::*;
 const MENVCFG_STCE_BIT: usize = 1 << 63;
 const MCOUNTEREN_TM_BIT: usize = 1 << 1;
 
-/// Initialize the timer intterupt.
+/// Initialize the timer interrupt.
 pub fn init() {
     unsafe {
-        // Enable timer intterupt in supervisor mode.
+        // Enable timer interrupt in supervisor mode.
         sie::set_stimer();
         // Enable sstc extension.
         set_stce();
@@ -45,7 +45,7 @@ pub fn set_stce() {
 }
 
 /// If the `TM` bit in `mcounteren` is set, access to the `stimecmp` is
-/// premitted in supervisor mode if implemented.
+/// permitted in supervisor mode if implemented.
 #[inline]
 fn set_mcounteren_time_bit() {
     unsafe {

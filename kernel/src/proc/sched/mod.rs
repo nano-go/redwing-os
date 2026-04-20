@@ -47,7 +47,7 @@ pub fn scheduler() -> ! {
         if let Some(task) = scheduler.pick_next_task() {
             let mut tx = task.lock();
             let cpu = unsafe {
-                // SAFETY: the intterupt state is disabled by `task.lock()`.
+                // SAFETY: the interrupt state is disabled by `task.lock()`.
                 mycpu_mut()
             };
             assert_eq!(tx.state, TaskState::Runable, "id: {}", task.tid);

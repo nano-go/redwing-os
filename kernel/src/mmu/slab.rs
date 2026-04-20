@@ -77,7 +77,7 @@ fn pgforder_for_slab(object_size: usize, min_obj_cnt: usize) -> usize {
 
 /// Allocates a new page frame as a slab.
 ///
-/// This function spilts the page frame into many objects and uses a singly
+/// This function splits the page frame into many objects and uses a singly
 /// linked list links theme.
 ///
 /// Returns the slab descriptor(`struct page`).

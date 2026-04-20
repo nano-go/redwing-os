@@ -138,7 +138,7 @@ impl LineDiscipline {
             Key::End => {
                 if self.echo {
                     self.text_screen
-                        .move_cursor_rigth(self.line_buffer.len() - self.edit);
+                        .move_cursor_right(self.line_buffer.len() - self.edit);
                 }
                 self.edit = self.line_buffer.len();
             }
@@ -156,7 +156,7 @@ impl LineDiscipline {
                 if self.edit < self.line_buffer.len() {
                     self.edit += 1;
                     if self.echo {
-                        self.text_screen.move_cursor_rigth(1);
+                        self.text_screen.move_cursor_right(1);
                     }
                 }
             }

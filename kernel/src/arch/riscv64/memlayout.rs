@@ -14,7 +14,7 @@
 //! +---------------+---------------+-------------+------------------------------------------+
 //! | 0xC000_0000   | 0xD000_0000   | 256MB       | RISC-V plic                              |
 //! +---------------+---------------+-------------+------------------------------------------+
-//! | 0xD000_0000   | 0xD800_0000   | 128MB       | Direct maping of all phyical memory      |
+//! | 0xD000_0000   | 0xD800_0000   | 128MB       | Direct mapping of all physical memory      |
 //! +---------------+---------------+-------------+------------------------------------------+
 //! | 0x2_0000_9000 | 0x2_0000_A000 | 4KB         | Task TrapFrame                           |
 //! +---------------+---------------+-------------+------------------------------------------+
@@ -52,7 +52,7 @@ pub static TASK_TRAPFRAME_BASE: usize = 0x2_0000_9000;
 pub const TASK_TRAPFRAME_END: usize = TASK_TRAPFRAME_BASE + PGSIZE;
 
 pub const USER_ELF_BASE_VADDR: usize = 0x2_0008_0000;
-pub const USER_ELF_SIZE: usize = 512 * 1024 * 102;
+pub const USER_ELF_SIZE: usize = 512 * 1024 * 1024;
 pub const USER_ELF_END_VADDR: usize = USER_ELF_BASE_VADDR + USER_ELF_SIZE;
 
 pub const USER_BASE_VADDR: usize = 0x3_0000_0000;

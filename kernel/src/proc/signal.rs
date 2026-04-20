@@ -143,7 +143,7 @@ pub fn handle_signals() -> KResult<()> {
     let taskref = task::current_task_or_err()?;
 
     loop {
-        handle_pendding_signals(&taskref);
+        handle_pending_signals(&taskref);
         let mut task = taskref.lock();
 
         if task.is_killed || !task.is_frozen {
@@ -156,7 +156,7 @@ pub fn handle_signals() -> KResult<()> {
     Ok(())
 }
 
-fn handle_pendding_signals(taskref: &TaskRef) {
+fn handle_pending_signals(taskref: &TaskRef) {
     for signal in 0..MAX_SIG + 1 {
         let task = taskref.lock();
 

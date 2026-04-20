@@ -61,7 +61,7 @@ pub fn r_vendor_id() -> u32 {
 /// significant bit depending on the last value written to DeviceFeaturesSel.
 /// Access to this register returns bits DeviceFeaturesSel ∗ 32 to
 /// (DeviceFeaturesSel ∗ 32) + 31, eg. feature bits 0 to 31 if DeviceFeaturesSel
-/// is set to 0 and features bits 32 to 63 if DeviceFeaturesSel is set to 10
+/// is set to 0 and features bits 32 to 63 if DeviceFeaturesSel is set to 1
 pub fn r_device_features() -> u32 {
     const DEVICE_FEATURES_OFFSET: usize = 0x010;
     r_reg(DEVICE_FEATURES_OFFSET)
@@ -197,7 +197,7 @@ pub fn w_status(value: DeviceStatus) {
 }
 
 /// Writing to the virtqueue's descriptor 64 bit long physical address notifies
-/// the the device about location of the Descriptor Area of the queue selected
+/// the device about location of the Descriptor Area of the queue selected
 /// by writing to QueueSel register.
 pub fn w_queue_desc(addr: u64) {
     w_queue_desc_low(addr as u32);
@@ -217,7 +217,7 @@ pub fn w_queue_desc_high(value: u32) {
 }
 
 /// Writing to the virtqueue's descriptor 64 bit long physical address notifies
-/// the the device about location of the Driver Area of the queue selected by
+/// the device about location of the Driver Area of the queue selected by
 /// writing to QueueSel register.
 pub fn w_driver_desc(value: u64) {
     w_driver_desc_low(value as u32);
@@ -237,7 +237,7 @@ pub fn w_driver_desc_high(value: u32) {
 }
 
 /// Writing to the virtqueue's descriptor 64 bit long physical address notifies
-/// the the device about location of the Device Area of the queue selected by
+/// the device about location of the Device Area of the queue selected by
 /// writing to QueueSel register.
 pub fn w_device_desc(addr: u64) {
     w_device_desc_low(addr as u32);

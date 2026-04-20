@@ -91,8 +91,8 @@ pub fn register_receiver(receiver: sync::Weak<dyn InputReceiver>) {
 
 pub fn uart_intr() {
     if read_reg(LSR) & LSR_TX_IDLE != 0 {
-        let mut transmiter = UART_TRANSMITER.lock();
-        transmiter.start_write();
+        let mut transmitter = UART_TRANSMITTER.lock();
+        transmitter.start_write();
     }
 
     let mut buf = [0_u8; 128];
@@ -111,7 +111,7 @@ pub fn uart_intr() {
 }
 
 lazy_static! {
-    static ref UART_TRANSMITER: Spinlock<UartTransmiter> =
+    static ref UART_TRANSMITTER: Spinlock<UartTransmiter> =
         Spinlock::new("uart_transmiter", UartTransmiter::new());
 }
 
@@ -160,7 +160,7 @@ pub fn uart_write(buf: &[u8]) {
     uart_write_sync(buf);
 
     // This is very slow.
-    // TODO: remove or improve asyncronous writing.
+    // TODO: remove or improve asynchronous writing.
 
     /*
     let mut writer = UART_TRANSMITER.lock_irq();
@@ -220,7 +220,7 @@ impl TextScreen for UartTextScreen {
         }
     }
 
-    fn move_cursor_rigth(&self, n: usize) {
+    fn move_cursor_right(&self, n: usize) {
         if n != 0 {
             let str = format_on_stack!(128, "\x1B[{n}C");
             uart_write_sync(str.as_bytes());

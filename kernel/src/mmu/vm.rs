@@ -30,7 +30,7 @@ use super::{
 static KERNEL_VM: Once<VM> = Once::new();
 
 pub fn init() {
-    // Lazyly initialize the kernel VM.
+    // Lazily initialize the kernel VM.
     let kvm = KERNEL_VM.get_or_init(|| VM::create_empty().unwrap());
 
     // This is used to quit from qemu.
@@ -82,7 +82,7 @@ pub fn switch_vm_to_kernel() {
 #[inline]
 pub fn kernel_vm() -> &'static VMInner {
     unsafe {
-        // SAFETY: Ths kernel VM is readonly.
+        // SAFETY: The kernel VM is readonly.
         KERNEL_VM
             .get()
             .expect("you should call kernel_vm() after vm::init().")
@@ -98,7 +98,7 @@ pub fn switch_vm(vm: &VM) {
 
     {
         let cpu = unsafe {
-            // SAFETY: the intterupt is disabled.
+            // SAFETY: the interrupt is disabled.
             mycpu_mut()
         };
         if let Some(current_vm) = cpu.current_vm.as_ref() {
@@ -454,10 +454,11 @@ impl VMInner {
         Ok(va + bytes.len())
     }
 
-    /// This is called by trap when a task accesses invalid page. If the address
-    /// falls with in the dynamic user space and no page is currently
-    /// mapped, this it allocates and maps a new page with `writable` and
-    /// `readable` permissions.
+    /// This is called by trap when a task accesses an invalid page:
+    /// 
+    /// If the address falls within the dynamic user space and no page is currently
+    /// mapped, then allocates and maps a new page with `writable` and `readable` 
+    /// permissions.
     ///
     /// This is used in lazy allocation schemes for [`Self::uvalloc`].
     pub fn on_page_fault(&mut self, addr: usize, _access: AccessType) -> KResult<()> {

@@ -48,7 +48,7 @@ table = [
     (0x10001000, None, 4096, "Virtio mmio registers"),
     (0x80000000, 0xC0000000, None, "Kernel code and data, which includes both text and rodata sections for the OS kernel"),
     (0xC0000000, None, 0x10000000, "RISC-V plic"),
-    (0xD0000000, None, 128*1024*1024, "Direct maping of all phyical memory"),
+    (0xD0000000, None, 128*1024*1024, "Direct mapping of all physical memory"),
     (0x200000000, None, 32*1024, "Task Kernel Stack"),
     (0x200009000, None, 4*1024, "Task TrapFrame"),
     (0x200080000, None, 512*1024*1024, "User ELF(code, data, rodata...)"),

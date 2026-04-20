@@ -20,7 +20,7 @@ pub trait TextScreen: Any + Sync + Send {
     fn move_cursor_left(&self, n: usize);
 
     /// Move cursor right n times
-    fn move_cursor_rigth(&self, n: usize);
+    fn move_cursor_right(&self, n: usize);
 
     /// Clear chars after cursor in the line.
     fn clear_to_end_of_line(&self);

@@ -36,7 +36,7 @@ use super::{
 };
 
 /// Specified queue index of virtio block device, which read/write requests will
-/// be tranforrmed.
+/// be transformed.
 const QUEUE_INDEX: u32 = 0;
 
 pub static VIRTIO_BLOCK_DEV: Once<Arc<VirtioBlockDevice>> = Once::new();
@@ -354,7 +354,7 @@ impl VirtioBlockDevice {
     ///
     /// # Safety
     ///
-    /// Caller must ensure that the `buf` is muttable if the `write` flag is
+    /// Caller must ensure that the `buf` is mutable if the `write` flag is
     /// `false`(means read).
     unsafe fn disk_rw(&self, block_id: usize, buf: &[u8], write: bool) {
         // Allocate three descriptors for this request chain.
@@ -393,7 +393,7 @@ impl VirtioBlockDevice {
         let mut blk_dev = self.shared.lock_irq_save();
         mmio::w_interrupt_ack(mmio::r_interrupt_status() & 0x3);
 
-        // The device incraments blk_dev.used().idx when it adds an entry to the used
+        // The device increments blk_dev.used().idx when it adds an entry to the used
         // ring.
         while blk_dev.used.idx != blk_dev.used_idx {
             trace!("virtio block: handle buffer.");

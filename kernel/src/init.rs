@@ -1,6 +1,6 @@
 use crate::{error, fs, proc::task};
 
-pub const DEFAULT_ENVRON: [&str; 3] = ["PATH=/bin", "HOME=/home", "PWD=/"];
+pub const DEFAULT_ENVIRON: [&str; 3] = ["PATH=/bin", "HOME=/home", "PWD=/"];
 
 pub fn setup_init_task() {
     let init_task_tid = task::spawn(|| init_main());
@@ -61,7 +61,7 @@ fn shell_main() {
             task::set_sid().unwrap();
             fs::ioctl::tcsetpgrp(0, proc::id::Tid::zero()).unwrap();
         }
-        let err = proc::exec::execve(b"/bin/sh", &[], &DEFAULT_ENVRON).unwrap_err();
+        let err = proc::exec::execve(b"/bin/sh", &[], &DEFAULT_ENVIRON).unwrap_err();
         printkln!("couldn't start shell: {err} ('/bin/sh')");
     });
 

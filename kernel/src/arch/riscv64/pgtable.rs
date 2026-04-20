@@ -284,12 +284,12 @@ impl PageTableImpl {
             table = if pde.is_valid() {
                 unsafe { &mut *pde.as_table() }
             } else if let Ok(new_table) = Self::try_alloc() {
-                // attemtps to allocate a intermediate table.
+                // attempts to allocate a intermediate table.
                 let raw = BuddyBox::into_raw(new_table);
                 pde.make_pde(raw.addr() as u64);
                 unsafe { &mut *raw }
             } else {
-                // allocating a table is failure.
+                // allocating a table has failed.
                 return None;
             };
         }

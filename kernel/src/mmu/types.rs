@@ -196,7 +196,7 @@ impl<T: ops::Sub<T, Output = T>> ops::Sub<PageAligned<T>> for PageAligned<T> {
     }
 }
 
-/// This represents a valid pointer to a memory in a regoin that is directly
+/// This represents a valid pointer to a memory in a region that is directly
 /// mapped.
 #[derive(Debug)]
 #[repr(transparent)]

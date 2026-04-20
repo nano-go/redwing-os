@@ -117,7 +117,7 @@ fn init_user_stack(vm: &VM) -> KResult<usize> {
     let sz = vm.user_space_size() + TASK_USER_STACK_SIZE - PGSIZE * 4;
     vm.uvalloc(sz, EntryPerm::with_rw(), true)?;
     // Immediately allocate the 4 pages because we'll be ready to place user
-    // arguments and envronments onto the stack.
+    // arguments and environments onto the stack.
     let sz = sz + PGSIZE * 4;
     vm.uvalloc(sz, EntryPerm::with_rw(), false)?;
 
@@ -191,7 +191,7 @@ fn load_segment(inode: &dyn VfsINodeOps, phdr: &ProgramHeader, vm: &VM) -> KResu
 
     let mut vm = vm.lock();
 
-    // Load user-accessiable virtual memory for the segment.
+    // Load user-accessible virtual memory for the segment.
     vm.alloc_segment(vaddr, memsz, perm | EntryPerm::USER)?;
 
     let mut phys_ptrs = vm

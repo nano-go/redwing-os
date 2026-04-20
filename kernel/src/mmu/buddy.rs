@@ -9,7 +9,7 @@
 //! * `Page`: The page frame(block) representation. See
 //!   [`crate::mmu::types::Page`].
 //!
-//! * `PageCacheList`: A per-cpu cached page list is used to accelarate
+//! * `PageCacheList`: A per-cpu cached page list is used to accelerate
 //!   allocating/deallocating 4KB-pages.
 //!
 //! * `FreeArea`: A struct contains a linked list linking all page frames in the
