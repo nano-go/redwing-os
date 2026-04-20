@@ -222,8 +222,10 @@ pub fn test_rmdir_and_getents() {
     mkdir(b"/tmp/test").unwrap();
     let fd = open(b"/tmp", OpenFlags::RDONLY).unwrap();
     assert!(dirents(fd).any(|dirent| dirent.name() == "test"));
+    close(fd).unwrap();
 
     rmdir(b"/tmp/test").unwrap();
+    let fd = open(b"/tmp", OpenFlags::RDONLY).unwrap();
     assert!(!dirents(fd).any(|dirent| dirent.name() == "test"));
     close(fd).unwrap();
 
